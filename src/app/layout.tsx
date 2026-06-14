@@ -9,6 +9,9 @@ export const metadata: Metadata = {
     'Reporte problemas urbanos, consulte transporte público e acompanhe a infraestrutura de Belo Horizonte com inteligência artificial.',
   keywords: ['BH', 'Belo Horizonte', 'mobilidade', 'transporte', 'infraestrutura', 'buracos', 'IA'],
   authors: [{ name: 'Robson Marcolino' }],
+  icons: {
+    icon: '/favicon.svg',
+  },
   openGraph: {
     title: 'BH Mobilidade 360',
     description: 'Plataforma cidadã inteligente para mobilidade e infraestrutura urbana de BH',
