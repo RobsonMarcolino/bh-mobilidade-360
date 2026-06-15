@@ -13,6 +13,8 @@ import {
   Menu,
   X,
   Home,
+  FileText,
+  User,
 } from 'lucide-react';
 
 const navItems = [
@@ -20,6 +22,7 @@ const navItems = [
   { href: '/reportar', label: 'Reportar', icon: AlertTriangle },
   { href: '/mapa', label: 'Mapa', icon: MapPin },
   { href: '/transporte', label: 'Transporte', icon: Bus },
+  { href: '/solicitacoes', label: 'Solicitações', icon: FileText },
   { href: '/chat', label: 'Chat IA', icon: MessageSquare },
 ];
 
@@ -42,35 +45,46 @@ export default function Navbar() {
               />
             </Link>
 
-            {/* Desktop Links */}
-            <div className="hidden md:flex items-center gap-1">
-              {navItems.map((item) => {
-                const isActive = pathname === item.href;
-                const Icon = item.icon;
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-2xl text-sm font-medium transition-all duration-200 ${
-                      isActive
-                        ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/25'
-                        : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
-                    }`}
-                  >
-                    <Icon className="w-4 h-4" />
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </div>
+            {/* Desktop Links & Actions */}
+            <div className="flex items-center gap-4">
+              <div className="hidden md:flex items-center gap-1">
+                {navItems.map((item) => {
+                  const isActive = pathname === item.href;
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`flex items-center gap-2 px-3 lg:px-4 py-2 rounded-2xl text-sm font-medium transition-all duration-200 ${
+                        isActive
+                          ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/25'
+                          : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                      }`}
+                    >
+                      <Icon className="w-4 h-4" />
+                      {item.label}
+                    </Link>
+                  );
+                })}
+              </div>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-2xl text-gray-600 hover:bg-gray-100"
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+              {/* Login Gov.br Button (Desktop) */}
+              <a 
+                href="https://sso.acesso.gov.br/login?client_id=acesso.pbh.gov.br&authorization_id=19ec8e08261"
+                className="hidden md:flex items-center gap-2 bg-[#1351b4] hover:bg-[#0c326f] text-white px-5 py-2.5 rounded-full text-sm font-bold transition-colors shadow-sm"
+              >
+                <User className="w-4 h-4" />
+                Entrar com gov.br
+              </a>
+
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="md:hidden p-2 rounded-2xl text-gray-600 hover:bg-gray-100"
+              >
+                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
         </div>
       </nav>
@@ -86,6 +100,15 @@ export default function Navbar() {
           >
             <div className="fixed inset-0 bg-black/20" onClick={() => setIsOpen(false)} />
             <motion.div className="fixed top-16 left-0 right-0 bg-white border-b border-gray-200 shadow-xl p-4 space-y-2">
+              {/* Login Gov.br Button (Mobile) */}
+              <a
+                href="https://sso.acesso.gov.br/login?client_id=acesso.pbh.gov.br&authorization_id=19ec8e08261"
+                className="flex items-center justify-center gap-2 w-full bg-[#1351b4] hover:bg-[#0c326f] text-white px-4 py-3 rounded-2xl text-sm font-bold mb-4 shadow-sm"
+              >
+                <User className="w-5 h-5" />
+                Entrar com gov.br
+              </a>
+
               {navItems.map((item) => {
                 const isActive = pathname === item.href;
                 const Icon = item.icon;
