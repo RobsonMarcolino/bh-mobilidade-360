@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   MapPin,
   AlertTriangle,
@@ -14,6 +15,7 @@ import {
   CheckCircle2,
   Clock,
 } from 'lucide-react';
+import Carousel from '@/components/ui/Carousel';
 
 const features = [
   {
@@ -40,14 +42,7 @@ const features = [
     color: 'from-green-500 to-emerald-500',
     bgColor: 'bg-green-50',
   },
-  {
-    icon: BarChart3,
-    title: 'Dashboard',
-    description: 'Indicadores de qualidade urbana por regional com gráficos interativos.',
-    href: '/dashboard',
-    color: 'from-purple-500 to-violet-500',
-    bgColor: 'bg-purple-50',
-  },
+
   {
     icon: MessageSquare,
     title: 'Chat IA',
@@ -69,35 +64,45 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-primary-600 via-primary-500 to-blue-600 text-white">
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
+      <section className="relative overflow-hidden text-white min-h-[600px] flex items-center">
+        {/* Background Video without dark overlays */}
+        <div className="absolute inset-0 z-0 bg-black">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline 
+            className="object-cover w-full h-full opacity-100"
+          >
+            <source src="/hero-video.mp4" type="video/mp4" />
+          </video>
+          {/* Subtle gradient at the bottom just to blend with the wave nicely */}
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-gray-50/80 to-transparent" />
+        </div>
+        
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
+            className="text-center max-w-4xl mx-auto"
           >
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm mb-6">
-              <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              Powered by Google Gemini AI
-            </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-6">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-tight mb-6 drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] tracking-tight">
               BH Mobilidade
-              <span className="block text-blue-200">360</span>
+              <span className="block text-white drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">360</span>
             </h1>
-            <p className="text-lg sm:text-xl text-blue-100 mb-8 leading-relaxed">
+            <p className="text-xl sm:text-2xl text-white mb-10 leading-relaxed drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-semibold max-w-3xl mx-auto">
               A plataforma cidadã inteligente para reportar, acompanhar e resolver
-              problemas de <strong className="text-white">mobilidade e infraestrutura urbana</strong> em
+              problemas de <strong className="text-white font-bold drop-shadow-md">mobilidade e infraestrutura urbana</strong> em
               Belo Horizonte.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/reportar" className="btn-primary bg-white text-primary-600 hover:bg-blue-50 shadow-xl flex items-center gap-2 text-base">
+              <Link href="/reportar" className="btn-primary bg-primary-600 border border-primary-500 text-white hover:bg-primary-500 shadow-[0_8px_16px_rgb(0,0,0,0.4)] flex items-center gap-2 text-lg px-8 py-4">
                 <AlertTriangle className="w-5 h-5" />
                 Reportar Problema
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-5 h-5" />
               </Link>
-              <Link href="/mapa" className="btn-secondary bg-white/10 text-white border border-white/20 hover:bg-white/20 flex items-center gap-2">
+              <Link href="/mapa" className="btn-secondary bg-white text-primary-800 border-none hover:bg-gray-100 flex items-center gap-2 shadow-[0_8px_16px_rgb(0,0,0,0.4)] text-lg px-8 py-4">
                 <MapPin className="w-5 h-5" />
                 Ver Mapa
               </Link>
@@ -107,67 +112,53 @@ export default function HomePage() {
 
         {/* Wave */}
         <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 50L48 45C96 40 192 30 288 35C384 40 480 60 576 65C672 70 768 60 864 50C960 40 1056 30 1152 35C1248 40 1344 60 1392 70L1440 80V100H0V50Z" fill="#F9FAFB"/>
+          <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-20 sm:h-24">
+            <path d="M0 50L48 45C96 40 192 30 288 35C384 40 480 60 576 65C672 70 768 60 864 50C960 40 1056 30 1152 35C1248 40 1344 60 1392 70L1440 80V100H0V50Z" fill="#f9fafb"/>
           </svg>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-10">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {stats.map((stat, i) => {
-            const Icon = stat.icon;
-            return (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="card text-center"
-              >
-                <Icon className={`w-8 h-8 ${stat.color} mx-auto mb-2`} />
-                <p className="text-2xl sm:text-3xl font-bold text-gray-900">{stat.value}</p>
-                <p className="text-sm text-gray-500">{stat.label}</p>
-              </motion.div>
-            );
-          })}
-        </div>
-      </section>
+      <div className="relative bg-gray-50">
+        {/* Subtle dot pattern overlay */}
+        <div className="absolute inset-0 z-0 opacity-40" style={{ backgroundImage: 'radial-gradient(#94a3b8 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/60 z-0" />
+
+
 
       {/* Features Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 tracking-tight drop-shadow-sm">
             Tudo que BH precisa em um só lugar
           </h2>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto">
-            Ferramentas inteligentes para você, cidadão de Belo Horizonte, fazer a diferença na sua cidade.
+          <p className="text-lg text-gray-600">
+            Uma plataforma integrada para facilitar a sua vida na cidade, com as 
+            ferramentas certas para cada necessidade.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {features.map((feature, i) => {
             const Icon = feature.icon;
+            
             return (
               <motion.div
                 key={feature.title}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 + i * 0.1 }}
+                transition={{ delay: i * 0.1 }}
+                className="card group hover:shadow-xl hover:-translate-y-1 transition-all border border-gray-100 bg-white/90 backdrop-blur-sm p-6 sm:p-8 rounded-3xl flex flex-col justify-between"
               >
-                <Link href={feature.href} className="card-hover block group">
-                  <div className={`w-14 h-14 ${feature.bgColor} rounded-2xl flex items-center justify-center mb-4`}>
-                    <Icon className={`w-7 h-7 bg-gradient-to-br ${feature.color} bg-clip-text`} style={{ color: feature.color.includes('orange') ? '#f97316' : feature.color.includes('blue') ? '#3b82f6' : feature.color.includes('green') ? '#22c55e' : feature.color.includes('purple') ? '#a855f7' : '#06b6d4' }} />
+                <Link href={feature.href} className="block w-full h-full">
+                  <div>
+                    <div className={`w-14 h-14 rounded-2xl ${feature.bg} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform`}>
+                      <Icon className={`w-7 h-7 ${feature.color}`} />
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 group-hover:text-[#005DAA] transition-colors">{feature.title}</h3>
+                    <p className="text-gray-600 leading-relaxed text-sm md:text-base">{feature.description}</p>
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-primary-500 transition-colors">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm text-gray-500 leading-relaxed">
-                    {feature.description}
-                  </p>
-                  <div className="mt-4 flex items-center gap-1 text-sm font-semibold text-primary-500 opacity-0 group-hover:opacity-100 transition-opacity">
-                    Acessar <ArrowRight className="w-4 h-4" />
+                  <div className="mt-8 flex items-center gap-2 text-sm font-bold text-[#005DAA] opacity-0 group-hover:opacity-100 transition-opacity">
+                    Acessar Ferramenta <ArrowRight className="w-4 h-4" />
                   </div>
                 </Link>
               </motion.div>
@@ -176,21 +167,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="bg-gradient-to-br from-primary-500 to-blue-600 rounded-3xl p-8 sm:p-12 text-white text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
-            Sua voz transforma BH 🏙️
-          </h2>
-          <p className="text-blue-100 max-w-xl mx-auto mb-8">
-            Cada problema reportado é um passo para uma Belo Horizonte melhor.
-            Junte-se a milhares de cidadãos que já estão fazendo a diferença.
-          </p>
-          <Link href="/reportar" className="inline-flex items-center gap-2 bg-white text-primary-600 px-8 py-4 rounded-2xl font-bold shadow-xl hover:bg-blue-50 transition-all active:scale-95">
-            Comece Agora <ArrowRight className="w-5 h-5" />
-          </Link>
-        </div>
+      {/* Carousel Section (Substituiu o CTA) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 relative z-10">
+        <Carousel />
       </section>
+      </div>
     </div>
   );
 }

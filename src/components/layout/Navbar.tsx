@@ -20,7 +20,6 @@ const navItems = [
   { href: '/reportar', label: 'Reportar', icon: AlertTriangle },
   { href: '/mapa', label: 'Mapa', icon: MapPin },
   { href: '/transporte', label: 'Transporte', icon: Bus },
-  { href: '/dashboard', label: 'Dashboard', icon: BarChart3 },
   { href: '/chat', label: 'Chat IA', icon: MessageSquare },
 ];
 
@@ -35,14 +34,12 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl flex items-center justify-center">
-                <MapPin className="w-6 h-6 text-white" />
-              </div>
-              <div className="hidden sm:block">
-                <h1 className="text-lg font-bold text-gray-900">BH Mobilidade</h1>
-                <p className="text-xs text-gray-500 -mt-1">360</p>
-              </div>
+            <Link href="/" className="flex items-center">
+              <img 
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC55boRTKAVZ01q_c1yHFMLdSfJRZvz1Zqzw&s" 
+                alt="Prefeitura de Belo Horizonte" 
+                className="h-10 md:h-12 w-auto object-contain" 
+              />
             </Link>
 
             {/* Desktop Links */}
