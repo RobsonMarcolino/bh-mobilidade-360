@@ -1,6 +1,6 @@
 # 🏙️ BH Mobilidade 360
 
-https://github.com/RobsonMarcolino/bh-mobilidade-360/raw/main/public/hero-video.mp4
+![BH Mobilidade 360](screenshot.png)
 
 O **BH Mobilidade 360** é uma plataforma cidadã desenvolvida para modernizar a interação do cidadão com a infraestrutura de Belo Horizonte.
 
