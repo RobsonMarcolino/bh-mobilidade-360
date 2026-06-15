@@ -74,7 +74,7 @@ export default function HomePage() {
             playsInline 
             className="object-cover w-full h-full opacity-100"
           >
-            <source src="/hero-video.mp4" type="video/mp4" />
+            <source src="/bh-mobilidade-360/hero-video.mp4" type="video/mp4" />
           </video>
           {/* Subtle gradient at the bottom just to blend with the wave nicely */}
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-gray-50/80 to-transparent" />
