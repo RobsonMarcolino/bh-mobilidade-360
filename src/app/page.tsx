@@ -151,8 +151,8 @@ export default function HomePage() {
               >
                 <Link href={feature.href} className="block w-full h-full">
                   <div>
-                    <div className={`w-14 h-14 rounded-2xl ${feature.bg} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform`}>
-                      <Icon className={`w-7 h-7 ${feature.color}`} />
+                    <div className={`w-14 h-14 rounded-2xl ${feature.bgColor} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform`}>
+                      <Icon className={`w-7 h-7 bg-gradient-to-br ${feature.color} bg-clip-text`} style={{ color: feature.color.includes('orange') ? '#f97316' : feature.color.includes('blue') ? '#3b82f6' : feature.color.includes('green') ? '#22c55e' : feature.color.includes('cyan') ? '#06b6d4' : '#a855f7' }} />
                     </div>
                     <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 group-hover:text-[#005DAA] transition-colors">{feature.title}</h3>
                     <p className="text-gray-600 leading-relaxed text-sm md:text-base">{feature.description}</p>
