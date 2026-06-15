@@ -15,6 +15,19 @@ import {
 import { TARIFA_MUNICIPAL, TARIFA_METROPOLITANA } from '@/utils/constants';
 import type { TransportLine } from '@/types';
 
+const transportLinesData: TransportLine[] = [
+  { code: '2103', name: 'Circular Av. do Contorno', type: 'CONVENCIONAL', avgRating: 3.2, totalRatings: 156 },
+  { code: '4103', name: 'Est. São Gabriel / Centro (MOVE)', type: 'MOVE', avgRating: 3.8, totalRatings: 234 },
+  { code: '5106', name: 'Est. Vilarinho / Centro (MOVE)', type: 'MOVE', avgRating: 3.1, totalRatings: 312 },
+  { code: '9250', name: 'Barreiro / Centro via Anel', type: 'CONVENCIONAL', avgRating: 2.9, totalRatings: 189 },
+  { code: '3070', name: 'Pampulha / Centro', type: 'CONVENCIONAL', avgRating: 3.5, totalRatings: 145 },
+  { code: 'METRO-1', name: 'Metrô - Linha 1 (Eldorado-Vilarinho)', type: 'METRO', avgRating: 4.1, totalRatings: 567 },
+  { code: '4106', name: 'Est. Barreiro / Centro (MOVE)', type: 'MOVE', avgRating: 3.4, totalRatings: 278 },
+  { code: '1502', name: 'Padre Eustáquio / Savassi', type: 'CONVENCIONAL', avgRating: 3.3, totalRatings: 98 },
+  { code: '9103', name: 'Venda Nova / Centro via C. Machado', type: 'CONVENCIONAL', avgRating: 2.7, totalRatings: 201 },
+  { code: '5201', name: 'Est. Pampulha / Centro (MOVE)', type: 'MOVE', avgRating: 3.6, totalRatings: 167 },
+];
+
 export default function TransportePage() {
   const [lines, setLines] = useState<TransportLine[]>([]);
   const [search, setSearch] = useState('');
@@ -25,20 +38,23 @@ export default function TransportePage() {
     fetchLines();
   }, [filterType]);
 
-  const fetchLines = async () => {
+  const fetchLines = () => {
     setLoading(true);
-    try {
-      const params = new URLSearchParams();
-      if (search) params.set('q', search);
-      if (filterType) params.set('type', filterType);
-      const res = await fetch(`/api/transport?${params}`);
-      const data = await res.json();
-      setLines(data.lines);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
+    let filtered = [...transportLinesData];
+    const query = search.toLowerCase();
+
+    if (query) {
+      filtered = filtered.filter(
+        (l) => l.name.toLowerCase().includes(query) || l.code.toLowerCase().includes(query)
+      );
     }
+
+    if (filterType) {
+      filtered = filtered.filter((l) => l.type === filterType);
+    }
+
+    setLines(filtered);
+    setLoading(false);
   };
 
   const handleSearch = (e: React.FormEvent) => {
